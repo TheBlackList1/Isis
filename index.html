@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Você aceita? ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #ffffff 0%, #ff9a9e 40%, #ff758c 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: 2.5em;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.poema {
+    width: 80%;
+    max-width: 600px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    white-space: pre-line;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.botoes {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.3s;
+}
+
+#sim {
+    background: #00c853;
+    color: white;
+    left: 30px;
+    top: 80px;
+}
+
+#sim:hover {
+    transform: scale(1.1);
+}
+
+#nao {
+    background: #d50000;
+    color: white;
+    right: 30px;
+    top: 80px;
+}
+
+.coracao {
+    position: absolute;
+    color: pink;
+    font-size: 20px;
+    animation: subir 4s linear infinite;
+}
+
+@keyframes subir {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-800px); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Você aceita viver essa história comigo? 💘</h1>
+
+<div class="poema">
+Quando a vejo
+Sinto um desmantelar
+De emoções
+Pensamentos
+Como se fosse 
+Um corte profundo
+Difícil de cicatrizar.
+
+Aquele seu lindo cabelo
+Que só de ver 
+Faz-me hipnotizar
+Aqueles seus lindos olhos
+Como se fosse um belo mar
+Sua linda voz
+Que só de ouvir
+Faz-me encantar.
+
+E quando penso
+Que posso parar de citar
+Suas qualidades
+Sempre vem 
+Mais um detalhe
+Que sempre
+Faz-me apaixonar.
+
+Datas que nunca 
+Esquecerei:
+20 de julho
+Da qual sempre me lembrarei
+Pelo seu nascer 
+A qual nunca esquecerei.
+
+E por coincidência 
+Em fevereiro
+Sempre me lembrarei
+Dia 20
+O dia que
+Pela primeira vez te admirei
+O amor da minha vida 
+Pela qual sempre
+Me apaixonarei
+Por Isis Cavalcante 
+Meu amor 
+Que sempre observei.
+</div>
+
+<div class="botoes">
+    <button id="sim" onclick="respostaSim()">Sim</button>
+    <button id="nao">Não</button>
+</div>
+
+<audio id="musica" loop>
+    <source src="isis.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const botaoNao = document.getElementById("nao");
+const musica = document.getElementById("musica");
+
+function moverBotao() {
+    const largura = window.innerWidth - 100;
+    const altura = window.innerHeight - 50;
+
+    const novaPosicaoX = Math.random() * largura;
+    const novaPosicaoY = Math.random() * altura;
+
+    botaoNao.style.left = novaPosicaoX + "px";
+    botaoNao.style.top = novaPosicaoY + "px";
+}
+
+botaoNao.addEventListener("mouseover", moverBotao);
+botaoNao.addEventListener("touchstart", moverBotao);
+
+document.body.addEventListener("click", function() {
+    musica.play();
+}, { once: true });
+
+function respostaSim() {
+    alert("Você acabou de me fazer a pessoa mais feliz do mundo ❤️✨");
+    criarCoracoes();
+}
+
+function criarCoracoes() {
+    for(let i = 0; i < 20; i++) {
+        let coracao = document.createElement("div");
+        coracao.classList.add("coracao");
+        coracao.innerHTML = "❤️";
+        coracao.style.left = Math.random() * window.innerWidth + "px";
+        coracao.style.top = window.innerHeight + "px";
+        coracao.style.fontSize = (Math.random() * 30 + 10) + "px";
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 4000);
+    }
+}
+</script>
+
+</body>
+</html>
