@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leia com atenção, Por favor. ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    background: url("isisft.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    transition: 2s;
+    z-index: -1;
+}
+
+body.luz::before {
+    background: rgba(0,0,0,0.3);
+}
+
+h1 {
+    color: white;
+    font-size: 2.5em;
+}
+
+.poema {
+    width: 80%;
+    max-width: 600px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    white-space: pre-line;
+}
+
+.botoes {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.3s;
+}
+
+#sim {
+    background: #00c853;
+    color: white;
+    left: 30px;
+    top: 80px;
+}
+
+#sim:hover {
+    transform: scale(1.1);
+}
+
+#nao {
+    background: #d50000;
+    color: white;
+    right: 30px;
+    top: 80px;
+}
+
+/* MENSAGEM FINAL MELHORADA */
+.mensagem-final {
+    position: fixed;
+    top: 40%;
+    font-size: 3em;
+    color: #ffffff;
+    background: rgba(255, 0, 100, 0.95);
+    padding: 20px 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    display: none;
+    animation: aparecer 1s ease-in-out forwards;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.coracao {
+    position: fixed;
+    font-size: 20px;
+    animation: subir 4s linear forwards;
+}
+
+@keyframes subir {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-800px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Poema para à garota do meu Coração 💘</h1>
+
+<div class="poema">
+Quando a vejo
+Sinto um desmantelar
+De emoções
+Pensamentos
+Como se fosse 
+Um corte profundo
+Difícil de cicatrizar.
+
+Aquele seu lindo cabelo
+Que só de ver 
+Faz-me hipnotizar
+Aqueles seus lindos olhos
+Como se fosse um belo mar
+Sua linda voz
+Que só de ouvir
+Faz-me encantar.
+
+E quando penso
+Que posso parar de citar
+Suas qualidades
+Sempre vem 
+Mais um detalhe
+Que sempre
+Faz-me apaixonar.
+
+Datas que nunca 
+Esquecerei:
+20 de julho
+Da qual sempre me lembrarei
+Pelo seu nascer 
+A qual nunca esquecerei.
+
+E por coincidência 
+Em fevereiro
+Sempre me lembrarei
+Dia 20
+O dia que
+Pela primeira vez te admirei
+O amor da minha vida 
+Pela qual sempre
+Me apaixonarei
+Por Isis Cavalcante 
+Meu amor 
+Que sempre observei.
+</div>
+
+<div class="botoes">
+    <button id="sim">Sim</button>
+    <button id="nao">Não</button>
+</div>
+
+<div class="mensagem-final" id="final">
+💍 Amo-te meu amor ❤️
+</div>
+
+<audio id="musica" loop>
+    <source src="isis3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const botaoNao = document.getElementById("nao");
+const botaoSim = document.getElementById("sim");
+const musica = document.getElementById("musica");
+const final = document.getElementById("final");
+
+function moverBotao() {
+    const largura = window.innerWidth - 120;
+    const altura = window.innerHeight - 80;
+
+    botaoNao.style.left = Math.random() * largura + "px";
+    botaoNao.style.top = Math.random() * altura + "px";
+}
+
+botaoNao.addEventListener("mouseover", moverBotao);
+botaoNao.addEventListener("touchstart", moverBotao);
+
+document.body.addEventListener("click", function() {
+    musica.play();
+    document.body.classList.add("luz");
+}, { once: true });
+
+botaoSim.addEventListener("click", function() {
+    final.style.display = "block";
+    criarCoracoes();
+});
+
+function criarCoracoes() {
+    for(let i = 0; i < 30; i++) {
+        let coracao = document.createElement("div");
+        coracao.classList.add("coracao");
+        coracao.innerHTML = "❤️";
+        coracao.style.left = Math.random() * window.innerWidth + "px";
+        coracao.style.top = window.innerHeight + "px";
+        coracao.style.fontSize = (Math.random() * 30 + 10) + "px";
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 4000);
+    }
+}
+</script>
+
+</body>
+</html>
